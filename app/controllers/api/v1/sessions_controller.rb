@@ -7,8 +7,8 @@ class Api::V1::SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(username: params[:fields][:username])
-    if user && user.authenticate(params[:fields][:password])
+    user = User.find_by(username: params[:session][:username])
+    if user && user.authenticate(params[:session][:password])
       payload = {user_id: user.id}
       token = issue_token(payload)
       render json: { jwt: token, yay: true }

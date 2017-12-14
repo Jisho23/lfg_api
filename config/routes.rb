@@ -6,6 +6,11 @@ Rails.application.routes.draw do
       resources :users
       resources :games
       resources :groups
+
+      post '/auth' => 'sessions#create'
+      get '/current_user' => 'sessions#show'
+
+      post '/addRemoveGame' => 'users#addRemoveGame'
     end
   end
 end

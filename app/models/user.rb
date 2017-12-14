@@ -38,7 +38,7 @@ class User < ApplicationRecord
           }
         }
       },
-      games: self.games
+      games: self.games.map{|game| game.id}
     }
   end
 
