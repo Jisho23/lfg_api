@@ -7,5 +7,9 @@ class Api::V1::GroupsController < ApplicationController
   def show
     group = Group.find(params['id']).package_json
     render json: group.to_json()
-  end 
+  end
+
+  def create
+    byebug
+  end
 end
