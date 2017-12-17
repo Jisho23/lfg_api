@@ -14,12 +14,15 @@ class Group < ApplicationRecord
   end
 
   def package_json
+    accepted_invites = self.accepted_invites
+    accepted_invites.map! {|invite| {invite_id: invite.id, recipient: invite.recipient}}
+    pending_invites = self.pending_invites.map! {|invite| {invite_id: invite.id, recipient: invite.recipient}}
     {
       id: self.id,
       game: self.game,
       owner: self.owner,
-      members: self.accepted_invites.map {|invite| invite.recipient},
-      pending: self.pending_invites.map {|invite| invite.recipient}
+      members: accepted_invites,
+      pending: pending_invites
     }
   end
 
