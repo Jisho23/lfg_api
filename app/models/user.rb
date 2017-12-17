@@ -11,13 +11,15 @@ class User < ApplicationRecord
   validates :username, presence: true
 
   def package_json
+    invites = self.invited.select {|invite| !invite.accept}
+    accepted_invites = self.invited.select {|invite| invite.accept}
     {
       user: self,
-      invites: self.invited.map{ |invite|
+      invites: invites.map{ |invite|
         {
-          id: invite.id,
-          game: invite.group.game,
-          group: invite.group,
+          invite_id: invite.id,
+          group_id: invite.group.id,
+          game: invite.group.game,  
           sender: invite.sender,
 
         }
@@ -25,12 +27,13 @@ class User < ApplicationRecord
       groups: {
         owner: self.groups.map {|group|
             {
+              group_id: group.id,
               game: group.game,
               pending: group.pending_invites.map{|invite| invite.recipient},
               accepted: group.accepted_invites.map{|invite| invite.recipient}
             }
           },
-        invited: self.invited.map { |invite|
+        accepted_invites: accepted_invites.map { |invite|
           {
             group_id: invite.group.id,
             game: invite.group.game,

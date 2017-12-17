@@ -10,6 +10,21 @@ class Api::V1::GroupsController < ApplicationController
   end
 
   def create
-    byebug
+    newGroup = Group.new(game_id: params[:gameId], owner_id: params[:userId])
+    user = User.find(params[:userId])
+    params[:gamers].each do |user_id|
+      recipient = User.find(user_id)
+      invite = Invite.create(group: newGroup, sender: user, recipient: recipient)
+    end
+    if newGroup.valid?
+      group = group.package_json
+      render json: newGroup.to_json()
+    else
+      render json: {error: "There was a problem creating this group. Please Try again"}.to_json()
+    end
+  end
+
+  def create_group_params
+    params.permit('')
   end
 end

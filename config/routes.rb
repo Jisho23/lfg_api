@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :users
       resources :games
       resources :groups
+      resources :invites
 
       post '/auth' => 'sessions#create'
       get '/current_user' => 'sessions#show'
