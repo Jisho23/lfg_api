@@ -10,13 +10,13 @@ class Api::V1::UsersController < ApplicationController
     render json: user.package_json
   end
 
-  def createUser
+  def create
      user = User.new(create_user_params)
      if user.valid?
        user.save
        render json: user.package_json
      else
-       render json: {error: 'Invalid User Input', status: '400'}
+       render json: {error: 'Invalid User params, please try again.', status: '400'}
      end
   end
 
@@ -36,8 +36,12 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def create_user_params
+    params.permit(:username, :password, :image)
+  end
+
   def update_user_params
-    params.require(:user).permit(:lfg, :image)
+    params.require(:user).permit(:lfg, :image, :status)
   end
 
   def update_game_params

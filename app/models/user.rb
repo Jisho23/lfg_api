@@ -4,6 +4,8 @@ class User < ApplicationRecord
   has_many :messages
   has_many :groups, :class_name => 'Group', :foreign_key => 'owner_id'
   has_many :invited, :class_name => 'Invite', :foreign_key => 'recipient_id'
+  has_many :honors, :class_name => 'Honor', :foreign_key => 'honored_id'
+  has_many :honored, :class_name => 'Honor', :foreign_key => 'honorer_id'
 
   has_secure_password
 
@@ -19,7 +21,7 @@ class User < ApplicationRecord
         {
           invite_id: invite.id,
           group_id: invite.group.id,
-          game: invite.group.game,  
+          game: invite.group.game,
           sender: invite.sender,
 
         }
@@ -41,7 +43,9 @@ class User < ApplicationRecord
           }
         }
       },
-      games: self.games.map{|game| game.id}
+      games: self.games.map{|game| game.id},
+      honor: self.honors.length,
+      honored: self.honored.map{|user|user.id}
     }
   end
 

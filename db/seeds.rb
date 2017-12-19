@@ -6,10 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-mario = User.create(username: 'Mario', password: 'itsame', image: 'https://supermariorun.com/assets/img/stage/mario03.png')
-wario = User.create(username: 'Wario', password: 'war', image: 'https://www.mariowiki.com/images/thumb/3/3c/Wario_MP100.png/250px-Wario_MP100.png')
-waluigi = User.create(username: 'Waluigi', password: 'waa', image: 'http://i0.kym-cdn.com/entries/icons/original/000/015/111/Mario_Party_-_Island_Tour_Waluigi_Artwork.png')
-jaina = User.create(username: 'Jaina', password: 'frostbolt', image: 'http://vignette1.wikia.nocookie.net/wowwiki/images/a/aa/Jaina_Proudmoore_%28New%29.jpg/revision/latest?cb=20130315233213')
+mario = User.create(username: 'Mario', password: 'itsame', status: "It's a-me!", image: 'https://supermariorun.com/assets/img/stage/mario03.png')
+wario = User.create(username: 'Wario', password: 'war', status: 'Warhaha!', image: 'https://www.mariowiki.com/images/thumb/3/3c/Wario_MP100.png/250px-Wario_MP100.png')
+waluigi = User.create(username: 'Waluigi', password: 'waa', status: 'Wahahaha!', image: 'http://i0.kym-cdn.com/entries/icons/original/000/015/111/Mario_Party_-_Island_Tour_Waluigi_Artwork.png')
+jaina = User.create(username: 'Jaina', password: 'frostbolt', status: 'Amazing!',image: 'http://vignette1.wikia.nocookie.net/wowwiki/images/a/aa/Jaina_Proudmoore_%28New%29.jpg/revision/latest?cb=20130315233213')
 
 wow = Game.create(name: "World of Warcraft", image: 'https://us.battle.net/forums/static/images/game-logos/game-logo-wow.png' )
 mariokart = Game.create(name: 'Mario Kart', image: 'https://assets.ign.com/thumbs/2012/03/20/080RedShell_1280w.jpg')
