@@ -44,8 +44,8 @@ class User < ApplicationRecord
         }
       },
       games: self.games.map{|game| game.id},
-      honor: self.honors.length,
-      honored: self.honored.map{|user|user.id}
+      honor: self.honors,
+      honored: self.honored
     }
   end
 

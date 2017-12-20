@@ -9,7 +9,7 @@ class Api::V1::InvitesController < ApplicationController
       render json: {invite_status: 'Invite Accepted!', group_id: group.id}
     else
       invite.destroy
-      render json: {invite_status: 'Invite Rejected!',action: 'reload', group_id: group.id}
+      render json: {invite_status: 'Invite Rejected!', action: 'reload', group_id: group.id}
     end
 
   end

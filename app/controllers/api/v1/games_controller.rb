@@ -7,6 +7,6 @@ class Api::V1::GamesController < ApplicationController
 
   def show
     game = Game.includes(:users).find(params['id'])
-    render json: game.to_json(include: [:users])
+    render json: game.package_json.to_json()
   end
 end

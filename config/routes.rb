@@ -10,9 +10,11 @@ Rails.application.routes.draw do
       resources :groups
       resources :invites
       resources :messages
+      resources :honors
 
       post '/auth' => 'sessions#create'
       get '/current_user' => 'sessions#show'
+      post '/honor' => 'honors#handle_honor'
 
       post '/addRemoveGame' => 'users#addRemoveGame'
     end
