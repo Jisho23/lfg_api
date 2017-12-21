@@ -6,7 +6,7 @@ class Game < ApplicationRecord
   validates :name, presence: true
 
   def package_json
-    users = self.users.sort{|user| user.honors.length}
+    users = self.users.sort{|usera, userb| userb.honors.length <=> usera.honors.length}
     {game: self, users: users}
   end
 end

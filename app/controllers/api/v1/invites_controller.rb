@@ -1,5 +1,12 @@
 class Api::V1::InvitesController < ApplicationController
 
+  def create
+    user = User.find_by(username: params[:user])
+    sender = User.find(params[:senderId])
+    group = Group.find(params[:groupId])
+    Invite.create(group: group, sender: sender, recipient: user)
+  end
+
   def update
     invite = Invite.find(params[:inviteId])
     group = invite.group

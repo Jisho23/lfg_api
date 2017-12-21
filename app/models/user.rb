@@ -2,10 +2,10 @@ class User < ApplicationRecord
   has_many :usergames
   has_many :games, through: :usergames
   has_many :messages
-  has_many :groups, :class_name => 'Group', :foreign_key => 'owner_id'
-  has_many :invited, :class_name => 'Invite', :foreign_key => 'recipient_id'
-  has_many :honors, :class_name => 'Honor', :foreign_key => 'honored_id'
-  has_many :honored, :class_name => 'Honor', :foreign_key => 'honorer_id'
+  has_many :groups, :class_name => 'Group', :foreign_key => 'owner_id', dependent: :destroy
+  has_many :invited, :class_name => 'Invite', :foreign_key => 'recipient_id', dependent: :destroy
+  has_many :honors, :class_name => 'Honor', :foreign_key => 'honored_id', dependent: :destroy
+  has_many :honored, :class_name => 'Honor', :foreign_key => 'honorer_id', dependent: :destroy
 
   has_secure_password
 
