@@ -2,11 +2,11 @@ class Api::V1::UsersController < ApplicationController
 
   def index
     users = User.all
-    render json: users.to_json()
+    render json: users.map{|user| user.package_json}
   end
 
   def show
-    user = User.find(params['id'])
+    user = User.include(:honors).find(params['id'])
     render json: user.package_json
   end
 
@@ -16,7 +16,8 @@ class Api::V1::UsersController < ApplicationController
        user.save
        render json: user.package_json
      else
-       render json: {error: 'Invalid User params, please try again.', status: '400'}
+       error = user.errors.full_messages
+       render json: {error: error.first}
      end
   end
 
